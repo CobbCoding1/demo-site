@@ -135,6 +135,14 @@ a {
     width: 90%;
     top: 45%;
     padding: 0 1rem;
+    font-size: 75%;
+  }
+  .hero-text h1,
+  .hero-text p {
+      font-size: 1em;
+  }
+  .hero-text .btn {
+      font-size: 0.75em;
   }
   .nav ul {
     display: none;
