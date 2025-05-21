@@ -306,6 +306,9 @@ a {
   .values-section ul {
     flex-direction: column;
   }
+  .nav a {
+    color: #000;
+  }
 }
 
 /* Section divider */
