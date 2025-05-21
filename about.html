@@ -3,18 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Business Name - About</title>
+  <title>Mike Geryak Construction – About</title>
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
   <header class="site-header">
     <div class="container">
-      <h1 class="logo">Placeholder</h1>
+      <h1 class="logo">Mike Geryak Construction</h1>
       <nav class="nav">
         <ul>
           <li><a href="index.html">Home</a></li>
-          <li><a href="projects.html">Projects</a></li>
+          <li><a href="projects.html">Gallery</a></li>
           <li><a href="about.html" class="active">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
         </ul>
         <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
       </nav>
@@ -22,19 +23,55 @@
   </header>
 
   <main class="container about">
-    <h2 class="header-text">About Us</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    <div class="team">
+    <section class="about-block story-section">
+      <h2 class="header-text">About Us</h2>
+      <p>
+        Mike Geryak Construction is dedicated to providing customers with a positive building experience and a quality custom-built home from start to finish. As a builder in Hancock County and the southern parts of Hamilton County areas since 1990, our experienced, practical knowledge of the industry, and professional team are available to assist you in your new construction project and site development. Contact us to schedule a consultation and learn how Mike Geryak Construction Custom Home Builder operates. We will provide you with excellent, personalized service and customer satisfaction.
+      </p>
+    </section>
+    <section class="about-block values-section">
+      <h3>Our Values</h3>
+      <ul>
+        <li><strong>Quality:</strong> We never compromise on the materials or workmanship we offer.</li>
+        <li><strong>Family:</strong> We treat every client and team member like one of our own.</li>
+      </ul>
+    </section>
+
+    <hr class="section-divider">
+
+    <section class="team">
       <div class="card">
-        <img src="assets/ceo.png" alt="Team Member">
-        <h3>John Doe</h3>
-        <p>CEO &amp; Founder</p>
+        <img src="assets/ceo.png" alt="Mike Geryak">
+        <h3>Mike Geryak</h3>
+        <p><em>Owner &amp; Founder</em></p>
+        <p>
+          With over 30 years of experience guiding our growth, Mike blends his great leadership 
+          with hands-on expertise. Under his direction, our team can and have delivered top-tier results.
+        </p>
       </div>
-    </div>
+    </section>
   </main>
 
+  <hr class="section-divider">
+
+  <section class="contact-section">
+    <h2>Contact Us</h2>
+    <form class="contact-form">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" placeholder="Your Name">
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="you@example.com">
+
+      <label for="message">Message</label>
+      <textarea id="message" name="message" placeholder="Your message…"></textarea>
+
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
   <footer class="site-footer container">
-    <p>&copy; 2025 Placeholder. All rights reserved.</p>
+    <p>&copy; 2025 Mike Geryak Construction. All rights reserved.</p>
   </footer>
 
   <script src="js/scripts.js"></script>
