@@ -283,15 +283,17 @@ a {
   border-radius: 5px;            
 }
 
-.values-section ul {
-  /* keep horizontal card layout */
+.find-us {
+  margin-left: 30%;
+  margin-right: 30%;
   display: flex;
-  gap: 1rem;
-  list-style: none;
-  margin-top: 1rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
-.values-section ul li {
+.find-us ul li {
   background: #84a068;
   border-radius: 5px;
   padding: 1rem;
@@ -303,7 +305,7 @@ a {
 
 /* stack vertically on mobile as before */
 @media (max-width: 768px) {
-  .values-section ul {
+  .find-us ul {
     flex-direction: column;
   }
   .nav a {
