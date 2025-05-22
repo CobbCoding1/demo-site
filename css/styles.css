@@ -359,7 +359,6 @@ a {
 .contact-form button {
   align-self: flex-start;
   padding: 0.75rem 1.5rem;
-  background: #007BFF;
   background: #22271d;
   color: #fff;
   border: none;
@@ -428,4 +427,31 @@ body {
 .lightbox-overlay img.zoomed {
   transform: scale(2);
   cursor: zoom-out;  
+}
+
+.featured-projects .cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;             
+  margin: 1rem auto;
+  max-width: 1200px;
+  padding: 0 1rem;
+}
+
+.featured-projects .cards .featured-card {
+  flex: 0 0 calc((100% - (0.5rem * 2)) / 2);
+  box-sizing: border-box;
+}
+
+.featured-projects .cards img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .featured-projects .cards .featured-card {
+    flex: 0 0 calc((100% - 0.5rem) / 2);
+  }
 }
