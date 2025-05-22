@@ -399,3 +399,32 @@ body {
 .featured-projects .cards .card h3 {
   padding: 0.5rem 1rem;
 }
+
+/* Lightbox Overlay */
+.lightbox-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  overflow: auto;   
+  cursor: zoom-out; 
+}
+
+/* Image defaults */
+.lightbox-overlay img {
+  max-width: 95%;
+  max-height: 95%;
+  transition: transform 0.3s ease;
+  cursor: zoom-in;
+  transform-origin: center center;   
+}
+
+/* Zoomed state */
+.lightbox-overlay img.zoomed {
+  transform: scale(2);
+  cursor: zoom-out;  
+}

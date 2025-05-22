@@ -53,3 +53,39 @@ document.querySelectorAll('.gallery').forEach(section => {
     if (idx < images.length - 1) { idx++; update(); }
   });
 });
+
+document.querySelectorAll('.gallery-viewer img').forEach(img => {
+  img.style.cursor = 'zoom-in';
+  img.addEventListener('click', () => {
+    const overlay = document.createElement('div');
+    overlay.className = 'lightbox-overlay';
+
+    // clone & prepare
+    const clone = img.cloneNode();
+    clone.classList.remove('zoomed');
+    overlay.appendChild(clone);
+
+    document.body.appendChild(overlay);
+
+    // click on image toggles zoom at click-point
+    clone.addEventListener('click', e => {
+      e.stopPropagation();             // prevent closing
+
+      // Calculate click position relative to image
+      const rect    = clone.getBoundingClientRect();
+      const offsetX = e.clientX - rect.left;
+      const offsetY = e.clientY - rect.top;
+      const originX = (offsetX / rect.width) * 100;
+      const originY = (offsetY / rect.height) * 100;
+
+      // Set transform-origin so it zooms around the click
+      clone.style.transformOrigin = `${originX}% ${originY}%`;
+      clone.classList.toggle('zoomed');
+    });
+
+    // click outside image closes
+    overlay.addEventListener('click', () => {
+      document.body.removeChild(overlay);
+    });
+  });
+});
