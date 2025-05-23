@@ -40,6 +40,7 @@ body {
 .header-text {
     margin-top: 1rem;
 }
+
 a {
   text-decoration: none;
   color: inherit;
@@ -62,7 +63,8 @@ a {
   color: #fff;
 }
 .logo {
-  font-size: 2.5rem;
+    text-align: center;
+  font-size: 2rem;
 }
 .nav a {
   color: #fff;
@@ -129,6 +131,9 @@ a {
   overflow: hidden;
   text-align: center;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.card .owner-text {
+    text-align: center;
 }
 .card img {
   width: 100%;
@@ -456,4 +461,19 @@ body {
   .featured-projects .cards .featured-card {
     flex: 0 0 calc((100% - 0.5rem) / 2);
   }
+}
+
+/* Logo row in Find Us */
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.logo-container img {
+  max-width: 150px;     /* adjust as needed */
+  height: auto;
+  object-fit: contain;
 }
