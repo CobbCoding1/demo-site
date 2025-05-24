@@ -62,10 +62,28 @@ a {
   border-bottom: 1px solid #ddd;
   color: #fff;
 }
+
 .logo {
-    text-align: center;
-  font-size: 2rem;
+  text-align: center;
+  font-size: 1.5rem;
 }
+
+.site-header .container > img.logo {
+    margin-left: 1rem;
+    max-height: 100px;
+    width: auto;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .logo {
+        font-size: 1rem;
+    }
+    .site-header .container > img.logo {
+        max-height: 50px;
+    }
+}
+
 .nav a {
   color: #fff;
 }
