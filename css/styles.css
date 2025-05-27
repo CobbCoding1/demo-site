@@ -496,7 +496,17 @@ body {
 }
 
 .logo-container img {
-  max-width: 150px;     /* adjust as needed */
+  max-width: 100px;     /* adjust as needed */
   height: auto;
   object-fit: contain;
+}
+
+@media (max-width: 768px) {
+  .logo-container {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .logo-container img {
+    max-width: 80px;
+  }
 }
