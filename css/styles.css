@@ -312,8 +312,6 @@ a {
 }
 
 .find-us {
-  margin-left: 30%;
-  margin-right: 30%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -486,7 +484,6 @@ body {
   }
 }
 
-/* Logo row in Find Us */
 .logo-container {
   display: flex;
   justify-content: center;
@@ -509,4 +506,44 @@ body {
   .logo-container img {
     max-width: 80px;
   }
+}
+
+.contact-info-container {
+  display: flex;
+  gap: 1.5rem;
+  margin: 2rem 0;
+  margin-left: 4rem;
+  margin-right: 4rem;
+  text-align: center;
+  align-items: stretch;  /* makes all panels equal height */
+}
+
+.contact-info-container .about-block {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.social-icon {
+  vertical-align: middle;
+  margin-right: 0.5rem;
+  fill: #333;
+}
+
+@media (max-width: 768px) {
+  .contact-info-container {
+    flex-direction: column;
+  }
+}
+
+.site-header .logo {
+  display: block;
+  max-width: 300px;
+  margin: 0 auto; 
+}
+.site-header .logo img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
