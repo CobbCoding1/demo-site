@@ -74,7 +74,7 @@ a {
 
 .logo {
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1rem;
 }
 
 .site-header .container > img.logo {
@@ -493,30 +493,6 @@ body {
   }
 }
 
-.logo-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-.logo-container img {
-  max-width: 100px;     /* adjust as needed */
-  height: auto;
-  object-fit: contain;
-}
-
-@media (max-width: 768px) {
-  .logo-container {
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-  .logo-container img {
-    max-width: 80px;
-  }
-}
-
 .contact-info-container {
   display: flex;
   gap: 1.5rem;
@@ -548,7 +524,6 @@ body {
 
 .site-header .logo {
   display: block;
-  max-width: 300px;
   margin: 0 auto; 
 }
 .site-header .logo img {
