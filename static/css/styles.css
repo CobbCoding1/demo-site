@@ -475,16 +475,25 @@ body {
   padding: 0 1rem;
 }
 
+/*
 .featured-projects .cards .featured-card {
   aspect-ratio: 4 / 3;  
   overflow: hidden;     
-  border-radius: 4px;   
+  border-radius: 15px;   
   background: #46523b;  
+}
+*/
+
+
+.featured-projects .cards .featured-card {
+  overflow: hidden;
+  border-radius: 4px;
+  background: #46523b;
 }
 
 .featured-projects .cards .featured-card img {
   width: 100%;
-  height: 100%;
+  height: auto;
   object-fit: cover; 
   display: block;
 }

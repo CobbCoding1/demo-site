@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 document.querySelectorAll('.gallery').forEach(section => {
-  const dir     = section.dataset.dir;     // e.g. "gallery1"
+  const dir     = section.dataset.dir;   
   const prevBtn = section.querySelector('.prev');
   const nextBtn = section.querySelector('.next');
   const imgEl   = section.querySelector('img');
@@ -21,7 +21,6 @@ document.querySelectorAll('.gallery').forEach(section => {
     nextBtn.disabled = idx >= images.length - 1;
   }
 
-  // fetch the directory listing and parse out image files
   fetch(`assets/${dir}/`)
     .then(res => {
       if (!res.ok) throw new Error(`Cannot fetch ${dir}`);
@@ -60,32 +59,42 @@ document.querySelectorAll('.gallery-viewer img').forEach(img => {
     const overlay = document.createElement('div');
     overlay.className = 'lightbox-overlay';
 
-    // clone & prepare
     const clone = img.cloneNode();
     clone.classList.remove('zoomed');
     overlay.appendChild(clone);
 
     document.body.appendChild(overlay);
 
-    // click on image toggles zoom at click-point
     clone.addEventListener('click', e => {
-      e.stopPropagation();             // prevent closing
+      e.stopPropagation();
 
-      // Calculate click position relative to image
       const rect    = clone.getBoundingClientRect();
       const offsetX = e.clientX - rect.left;
       const offsetY = e.clientY - rect.top;
       const originX = (offsetX / rect.width) * 100;
       const originY = (offsetY / rect.height) * 100;
-
-      // Set transform-origin so it zooms around the click
       clone.style.transformOrigin = `${originX}% ${originY}%`;
       clone.classList.toggle('zoomed');
     });
 
-    // click outside image closes
     overlay.addEventListener('click', () => {
       document.body.removeChild(overlay);
     });
+  });
+});
+
+window.addEventListener('load', () => {
+  const cards = document.querySelectorAll('.featured-projects .cards .featured-card');
+  if (!cards.length) return;
+
+  const heights = Array.from(cards).map(card => {
+    const img = card.querySelector('img');
+    return img ? img.clientHeight : Infinity;
+  });
+
+  const minH = Math.min(...heights);
+
+  cards.forEach(card => {
+    card.style.height = `${minH}px`;
   });
 });
