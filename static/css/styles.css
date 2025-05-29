@@ -17,7 +17,7 @@ h1, h2, h3, h4, h5, h6 {
 .intro {
   background: #84a068;
   padding: 1.5rem;
-  margin: 2rem 20%;
+  margin: 2rem 15%;
   border-radius: 5px;
   text-align: center;
 }
@@ -27,7 +27,7 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (max-width: 768px) {
     .intro {
-        margin: 2rem 5rem;
+        margin: 1rem 1rem;
     }
 }
 
@@ -232,7 +232,7 @@ a {
 #gallery1 {
   background: url('../assets/pdfs/pdf1.jpg') no-repeat center center;
   background-size: cover;
-  padding: 5rem 5rem;        
+  padding: 1rem 1rem;        
   position: relative;    
 }
 
@@ -545,7 +545,7 @@ body {
 }
 
 .logo-container {
-  display: flex;
+ http://172.237.138.83/projects.html display: flex;
   justify-content: center;
   align-items: center;
   gap: 1rem;
