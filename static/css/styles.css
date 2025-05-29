@@ -544,6 +544,20 @@ body {
   }
 }
 
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.logo-container img {
+  max-width: 80px;     /* adjust as needed */
+  height: auto;
+  object-fit: contain;
+}
+
 .site-header .logo {
   display: block;
   margin: 0 auto; 
