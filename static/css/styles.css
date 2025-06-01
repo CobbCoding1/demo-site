@@ -162,10 +162,6 @@ a {
 .card .owner-text {
     text-align: center;
 }
-.card img {
-  width: 100%;
-  display: block;
-}
 .card h3 {
   margin: 1rem 0 0.5rem;
 }
@@ -181,6 +177,12 @@ a {
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1.5rem;
   margin-top: 2rem;
+}
+.team .card img {
+  display: block;
+  margin: 1rem auto 2rem;
+  max-width: 50%;
+  height: auto;
 }
 /* Footer */
 .site-footer {
