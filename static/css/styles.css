@@ -639,6 +639,7 @@ body {
 }
 
 .video-viewer video {
+  max-height: 500px;
   width: 100%;
   max-width: 800px;
   height: auto;
