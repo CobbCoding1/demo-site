@@ -618,10 +618,9 @@ body {
 
 .video-section {
   position: relative;
-  background: #f0f4f8;      /* light background to match other .story-section blocks */
-  padding: 2rem 1rem;       /* vertical & horizontal padding */
-  border-radius: 5px;       /* same rounding */
-  margin: 2rem 0;           /* space between sections */
+  padding: 2rem 1rem;
+  border-radius: 5px;
+  margin: 2rem 0; 
 }
 
 /* Dark overlay if you want the same “fade” effect */
