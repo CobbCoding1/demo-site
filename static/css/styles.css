@@ -569,3 +569,99 @@ body {
   height: auto;
   display: block;
 }
+
+.videos h2.header-text {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+/* Reuse your existing .cards grid for videos */
+.videos .cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+/* Style each video card similarly to your other cards */
+.videos .card {
+  background: #84a068;       /* same card bg as elsewhere */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  padding-bottom: 1rem;
+}
+
+/* Make the <video> fill the width of the card */
+.videos .card video {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-bottom: 1px solid #ccc;
+}
+
+/* Caption below the video */
+.videos .card h3 {
+  margin: 0.75rem 0 0.25rem;
+  padding: 0 0.5rem;
+  font-size: 1rem;
+}
+
+/* On very narrow screens, stack cards vertically */
+@media (max-width: 500px) {
+  .videos .cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+.video-section {
+  position: relative;
+  background: #f0f4f8;      /* light background to match other .story-section blocks */
+  padding: 2rem 1rem;       /* vertical & horizontal padding */
+  border-radius: 5px;       /* same rounding */
+  margin: 2rem 0;           /* space between sections */
+}
+
+/* Dark overlay if you want the same “fade” effect */
+.video-section::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+  border-radius: 5px;
+}
+
+/* Keep the video viewer and title above the overlay */
+.video-viewer {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+/* Video fills 100% of its container’s width */
+.video-viewer video {
+  width: 100%;
+  max-width: 800px;   /* you can limit max width if you wish */
+  height: auto;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  display: block;
+  margin: 0 auto 1rem;
+  background: #000;   /* black background behind video if it letterboxes */
+}
+
+/* Caption below the video */
+.video-viewer h3 {
+  margin: 0;
+  color: #333;
+}
+
+/* On mobile, reduce padding */
+@media (max-width: 768px) {
+  .video-section {
+    padding: 1rem 0.5rem;
+  }
+}
