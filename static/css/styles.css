@@ -623,7 +623,6 @@ body {
   margin: 2rem 0; 
 }
 
-/* Dark overlay if you want the same “fade” effect */
 .video-section::before {
   content: "";
   position: absolute;
@@ -633,34 +632,34 @@ body {
   border-radius: 5px;
 }
 
-/* Keep the video viewer and title above the overlay */
 .video-viewer {
   position: relative;
   z-index: 2;
   text-align: center;
 }
 
-/* Video fills 100% of its container’s width */
 .video-viewer video {
   width: 100%;
-  max-width: 800px;   /* you can limit max width if you wish */
+  max-width: 800px;
   height: auto;
   border: 1px solid #ccc;
   border-radius: 4px;
   display: block;
   margin: 0 auto 1rem;
-  background: #000;   /* black background behind video if it letterboxes */
+  background: #000; 
 }
 
-/* Caption below the video */
 .video-viewer h3 {
   margin: 0;
   color: #333;
 }
 
-/* On mobile, reduce padding */
 @media (max-width: 768px) {
   .video-section {
     padding: 1rem 0.5rem;
   }
+}
+
+p {
+    font-size: 1.25rem;
 }
