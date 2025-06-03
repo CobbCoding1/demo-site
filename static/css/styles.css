@@ -3,6 +3,10 @@ body {
   color: #fff;
 }
 
+h2 {
+    font-family: "Times New Roman", Times, serif;
+}
+
 /* Ensure links inherit and remain readable */
 a,
 a:visited {
@@ -17,7 +21,7 @@ h1, h2, h3, h4, h5, h6 {
 .intro {
   background: #84a068;
   padding: 1.5rem;
-  margin: 2rem 15%;
+  margin: 2rem 20%;
   border-radius: 5px;
   text-align: center;
 }
@@ -73,6 +77,8 @@ a {
 }
 
 .logo {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 20px;
   text-align: center;
   font-size: 1rem;
 }
@@ -115,26 +121,42 @@ a {
 }
 
 .hero {
-  /* solid card-background color */
-  background: #46523b;
+  position: relative;
+  padding: 8rem 1rem;
   text-align: center;
-  color: #fff;
-  padding: 6rem 1rem;
   overflow: hidden;
+  color: #fff;
 }
-.hero img {
-  display: none;
+
+/* draw an 80%-wide, centered, darkened hero image behind the text */
+.hero::before {
+  content: "";
+  position: absolute;
+  margin-top: 1rem;
+  top:   0;
+  left:  20%;               /* (100% – 80%) ÷ 2 = 10% offset */
+  width: 60%;
+  height: 100%;
+  background: url("../assets/hero.PNG") no-repeat center center;
+  background-size: cover;
+  filter: brightness(0.6);  /* darken slightly */
+  z-index: -1;
 }
+
+/* ensure the text itself stays on top and is constrained */
 .hero-text {
-  position: relative;      /* static flow */
-  top: auto;
-  left: auto;
-  transform: none;
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto;          /* center block */
-  padding: 0 1rem;
-  font-size: 150%;
+  position: relative;
+  z-index: 1;
+  width: 70%;
+  max-width: 800px;
+  font-size: 1.3rem;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .hero-text {
+        max-width: 400px;
+    }
 }
 
 .btn {
