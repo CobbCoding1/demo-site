@@ -1,11 +1,12 @@
 import os
 import mimetypes
-from flask import Flask, request, redirect, abort, make_response, url_for
+from flask import Flask, request, redirect, abort, make_response, url_for, jsonify, send_file
 from flask_caching import Cache
 from io import BytesIO
 import smtplib
 from email.message import EmailMessage
 from dotenv import load_dotenv
+import requests
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 load_dotenv(os.path.join(basedir, '.env'))
@@ -108,6 +109,14 @@ def handle_contact():
 
     # Redirect back to a “thank you” location or simply back to /contact
     return redirect(url_for('static_files', filename='contact.html') + "?sent=1")
+
+@app.route('/api/imgur/album/<album_hash>')
+@cache.cached(timeout=(3600*12))  # cache for one hour
+def imgur_album(album_hash):
+    client_id = os.getenv("IMGUR_CLIENT_ID")
+    headers = {"Authorization": f"Client-ID {client_id}"}
+    r = requests.get(f"https://api.imgur.com/3/album/{album_hash}/images", headers=headers)
+    return jsonify(r.json())
 
 
 if __name__ == '__main__':

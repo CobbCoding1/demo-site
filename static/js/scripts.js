@@ -1,100 +1,116 @@
+
 document.addEventListener('DOMContentLoaded', () => {
+  // ===== 1) Responsive Nav Toggle =====
   const toggle = document.querySelector('.nav-toggle');
-  const menu = document.querySelector('.nav ul');
-  toggle.addEventListener('click', () => {
-    const isOpen = menu.style.display === 'flex';
-    menu.style.display = isOpen ? 'none' : 'flex';
-  });
-});
-
-document.querySelectorAll('.gallery').forEach(section => {
-  const dir     = section.dataset.dir;   
-  const prevBtn = section.querySelector('.prev');
-  const nextBtn = section.querySelector('.next');
-  const imgEl   = section.querySelector('img');
-  let images    = [];
-  let idx       = 0;
-
-  function update() {
-    imgEl.src = images[idx] || '';
-    prevBtn.disabled = idx === 0;
-    nextBtn.disabled = idx >= images.length - 1;
+  const menu   = document.querySelector('.nav ul');
+  if (toggle && menu) {
+    toggle.addEventListener('click', () => {
+      const isOpen = menu.style.display === 'flex';
+      menu.style.display = isOpen ? 'none' : 'flex';
+    });
   }
 
-  fetch(`assets/${dir}/`)
-    .then(res => {
-      if (!res.ok) throw new Error(`Cannot fetch ${dir}`);
-      return res.text();
-    })
-    .then(html => {
-      const parser = new DOMParser();
-      const doc    = parser.parseFromString(html, 'text/html');
-      images = Array.from(doc.querySelectorAll('a'))
-        .map(a => a.getAttribute('href'))
-        .filter(href => href.match(/\.(png|jpe?g|gif)$/i))
-        .map(name => `assets/${dir}/${name}`)
-        .sort((a, b) => {
-          const nA = a.split('/').pop();
-          const nB = b.split('/').pop();
-          return nA.localeCompare(nB, undefined, {
-            numeric: true,
-            sensitivity: 'base'
-          });
-        });
-      update();
-    })
-    .catch(err => console.error(err));
+  // ===== 2) Array-Based Gallery Logic =====
+  //
+  // Each <section class="gallery"> must include a data-images attribute
+  // containing a JSON-encoded array of image URLs (in the desired order). Example:
+  //
+  //   <section class="gallery" data-images='[
+  //     "https://i.ibb.co/abcd1234/img1.jpg",
+  //     "https://i.ibb.co/abcd1234/img2.jpg",
+  //     "https://i.ibb.co/abcd1234/img3.jpg"
+  //   ]'>
+  //     <div class="gallery-viewer">
+  //       <button class="prev" aria-label="Previous image">‹</button>
+  //       <img src="" alt="Gallery image">
+  //       <button class="next" aria-label="Next image">›</button>
+  //     </div>
+  //   </section>
+  //
+  // This code reads that array and sets up the Prev/Next buttons to cycle through.
 
-  prevBtn.addEventListener('click', () => {
-    if (idx > 0) { idx--; update(); }
-  });
-  nextBtn.addEventListener('click', () => {
-    if (idx < images.length - 1) { idx++; update(); }
-  });
-});
+  document.querySelectorAll('.gallery').forEach(section => {
+    // 2a) Parse the JSON array from data-images
+    let images;
+    try {
+      images = JSON.parse(section.getAttribute('data-images'));
+      if (!Array.isArray(images)) throw new Error('data-images is not an array');
+    } catch (err) {
+      console.error('Invalid or missing data-images on', section, err);
+      return;
+    }
 
-document.querySelectorAll('.gallery-viewer img').forEach(img => {
-  img.style.cursor = 'zoom-in';
-  img.addEventListener('click', () => {
-    const overlay = document.createElement('div');
-    overlay.className = 'lightbox-overlay';
+    const prevBtn = section.querySelector('.prev');
+    const nextBtn = section.querySelector('.next');
+    const imgEl   = section.querySelector('img');
+    let idx       = 0;
 
-    const clone = img.cloneNode();
-    clone.classList.remove('zoomed');
-    overlay.appendChild(clone);
+    function update() {
+      imgEl.src = images[idx] || '';
+      prevBtn.disabled = idx === 0;
+      nextBtn.disabled = idx === images.length - 1;
+    }
 
-    document.body.appendChild(overlay);
+    // Initialize with the first image
+    update();
 
-    clone.addEventListener('click', e => {
-      e.stopPropagation();
-
-      const rect    = clone.getBoundingClientRect();
-      const offsetX = e.clientX - rect.left;
-      const offsetY = e.clientY - rect.top;
-      const originX = (offsetX / rect.width) * 100;
-      const originY = (offsetY / rect.height) * 100;
-      clone.style.transformOrigin = `${originX}% ${originY}%`;
-      clone.classList.toggle('zoomed');
+    prevBtn.addEventListener('click', () => {
+      if (idx > 0) {
+        idx--;
+        update();
+      }
     });
-
-    overlay.addEventListener('click', () => {
-      document.body.removeChild(overlay);
+    nextBtn.addEventListener('click', () => {
+      if (idx < images.length - 1) {
+        idx++;
+        update();
+      }
     });
   });
-});
 
-window.addEventListener('load', () => {
-  const cards = document.querySelectorAll('.featured-projects .cards .featured-card');
-  if (!cards.length) return;
+  // ===== 3) Lightbox Zoom for Gallery Images =====
+  document.querySelectorAll('.gallery-viewer img').forEach(img => {
+    img.style.cursor = 'zoom-in';
+    img.addEventListener('click', () => {
+      const overlay = document.createElement('div');
+      overlay.className = 'lightbox-overlay';
 
-  const heights = Array.from(cards).map(card => {
-    const img = card.querySelector('img');
-    return img ? img.clientHeight : Infinity;
+      const clone = img.cloneNode();
+      clone.classList.remove('zoomed');
+      overlay.appendChild(clone);
+
+      document.body.appendChild(overlay);
+
+      clone.addEventListener('click', e => {
+        e.stopPropagation();
+        const rect    = clone.getBoundingClientRect();
+        const offsetX = e.clientX - rect.left;
+        const offsetY = e.clientY - rect.top;
+        const originX = (offsetX / rect.width) * 100;
+        const originY = (offsetY / rect.height) * 100;
+        clone.style.transformOrigin = `${originX}% ${originY}%`;
+        clone.classList.toggle('zoomed');
+      });
+
+      overlay.addEventListener('click', () => {
+        document.body.removeChild(overlay);
+      });
+    });
   });
 
-  const minH = Math.min(...heights);
+  // ===== 4) Equalize Featured-Projects Card Heights =====
+  window.addEventListener('load', () => {
+    const cards = document.querySelectorAll('.featured-projects .cards .featured-card');
+    if (!cards.length) return;
 
-  cards.forEach(card => {
-    card.style.height = `${minH}px`;
+    const heights = Array.from(cards).map(card => {
+      const img = card.querySelector('img');
+      return img ? img.clientHeight : Infinity;
+    });
+
+    const minH = Math.min(...heights);
+    cards.forEach(card => {
+      card.style.height = `${minH}px`;
+    });
   });
 });
