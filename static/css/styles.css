@@ -279,7 +279,10 @@ a {
 }
 
 .gallery {
-  margin: 2rem 0;
+  margin: 2rem auto;
+  width: 80%;
+  max-width: 800px;
+  position: relative;
 }
 
 .gallery h3 {
