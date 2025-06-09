@@ -327,7 +327,7 @@ a {
   background: #22271d;       
   color: #fff;
   border: none;
-  width: 3rem;   
+  width: 2rem;   
   display: flex;
   align-items: center;      
   justify-content: center; 
@@ -340,6 +340,15 @@ a {
   opacity: 0.5;
   cursor: default;
 }
+
+
+@media (max-width: 768px) {
+    .gallery-viewer button {
+      width: 4rem;       /* twice as wide as desktop */
+      font-size: 2.5rem; /* bump the icon size if you like */
+    }
+}
+
 /* Values as horizontal cards */
 .about-block ul {
   display: flex;
