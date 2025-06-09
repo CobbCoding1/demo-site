@@ -693,3 +693,32 @@ body {
 p {
     font-size: 1.25rem;
 }
+
+/* full-screen overlay */
+.lightbox-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+/* the slide image */
+.lightbox-slide {
+  max-width: 90vw;
+  max-height: 90vh;
+  cursor: grab;
+  user-select: none;
+  touch-action: none;      /* allow pointer events for swipe */
+  transition: transform 0.3s ease;
+}
+
+/* when zoomed */
+.lightbox-slide.zoomed {
+  transform: scale(2);      /* adjust zoom level as desired */
+  cursor: zoom-out;
+}
